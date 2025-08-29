@@ -1,1 +1,1 @@
-[奇妙应用]([https://markdown.com.cn](https://dgqyg.github.io/奇妙应用/) "123云盘链接")
+**Markdown语法:**<https://markdown.com.cn>
