@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 - dgqyg.github.io</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .bg-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-2xl bg-white rounded-xl shadow-xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient text-white p-6 text-center">
+                <h1 class="text-4xl font-bold mb-2">404</h1>
+                <p class="text-xl">页面未找到</p>
+            </div>
+
+            <!-- Content -->
+            <div class="p-8 text-center">
+                <img src="https://picsum.photos/600/300?random=1" 
+                     alt="丢失页面示意图" 
+                     class="mx-auto rounded-lg mb-8 shadow-md">
+                
+                <p class="text-gray-600 mb-8 text-lg">
+                    您访问的页面 <span class="font-mono bg-gray-200 px-2 py-1 rounded">dgqyg.github.io</span> 不存在或已被移除
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a href="https://dgqyg.github.io" 
+                       class="hover-scale bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg flex items-center">
+                        <i class="fas fa-home mr-2"></i> 返回首页
+                    </a>
+                    <a href="mailto:your-email@example.com" 
+                       class="hover-scale bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg flex items-center">
+                        <i class="fas fa-envelope mr-2"></i> 联系管理员
+                    </a>
+                </div>
+
+                <div class="text-gray-500 text-sm">
+                    <p>将在 <span id="countdown">5</span> 秒后自动跳转至首页</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 p-4 text-center text-gray-500 text-sm">
+                © 2025 dgqyg.github.io - 所有权利保留
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 倒计时跳转
+        let seconds = 5;
+        const countdown = setInterval(() => {
+            document.getElementById('countdown').textContent = --seconds;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = "https://dgqyg.github.io";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
