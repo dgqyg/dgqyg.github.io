@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全提示 - 即将离开当前网站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .warning-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md pulse-animation">
+            <div class="warning-bg text-white rounded-t-xl p-6 text-center shadow-lg">
+                <i class="fas fa-shield-alt text-4xl mb-4"></i>
+                <h1 class="text-2xl font-bold">安全警告</h1>
+            </div>
+
+            <div class="bg-white rounded-b-xl p-8 shadow-lg">
+                <div class="flex items-start mb-6">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-3"></i>
+                    <div>
+                        <h2 class="text-lg font-semibold">您即将离开当前网站</h2>
+                        <p class="text-gray-600 mt-1">点击的链接将指向外部网站：</p>
+                        <div class="bg-gray-100 p-3 rounded mt-2 break-all">
+                            <span id="target-url" class="font-mono text-sm">加载中...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button id="cancel-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition">
+                        <i class="fas fa-times mr-2"></i>取消
+                    </button>
+                    <button id="continue-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition">
+                        <i class="fas fa-external-link-alt mr-2"></i>继续访问
+                    </button>
+                </div>
+
+                <div class="mt-6 text-sm text-gray-500">
+                    <p><i class="fas fa-info-circle mr-2"></i>请确认链接可信后再继续访问</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 从URL参数获取目标链接
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUrl = urlParams.get('url') || 'about:blank';
+            
+            // 显示目标URL
+            document.getElementById('target-url').textContent = decodeURIComponent(targetUrl);
+            
+            // 按钮事件处理
+            document.getElementById('cancel-btn').addEventListener('click', () => {
+                window.history.back();
+            });
+            
+            document.getElementById('continue-btn').addEventListener('click', () => {
+                window.location.href = decodeURIComponent(targetUrl);
+            });
+            
+            // 拦截页面离开事件
+            window.addEventListener('beforeunload', (e) => {
+                e.preventDefault();
+                e.returnValue = '';
+            });
+        });
+    </script>
+</body>
+</html>
